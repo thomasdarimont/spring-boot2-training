@@ -42,7 +42,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/todos")
 @RequiredArgsConstructor
-public class TodoResource {
+public class TodoController {
 
     private final TodoService todos;
 
