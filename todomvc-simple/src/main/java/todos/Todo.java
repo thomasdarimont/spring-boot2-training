@@ -1,5 +1,6 @@
 package todos;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -13,13 +14,20 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
+@JsonIgnoreProperties({"handler", "hibernateLazyInitializer", "fieldHandler"})
 public class Todo {
 
-  @Id
-  @GeneratedValue
-  Long id;
+    @Id
+    @GeneratedValue
+    Long id;
 
-  String title;
+    String title;
 
-  Boolean completed;
+    Boolean completed = false;
+
+    public static Todo newTodo(String title) {
+        Todo todo = new Todo();
+        todo.setTitle(title);
+        return todo;
+    }
 }
