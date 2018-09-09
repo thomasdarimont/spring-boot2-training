@@ -1,0 +1,153 @@
+{
+	"info": {
+		"_postman_id": "7c76fb02-5150-4a44-875b-fafec0541edc",
+		"name": "TODO MVC",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "List TODOs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{BASE_URL}}/todos",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"todos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get TODO info",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{BASE_URL}}/todos/4",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"todos",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create new TODO",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"New TODO1\", \n\t\"completed\":false \n}"
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/todos",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"todos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update TODO completion status",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"completed\":true\n}"
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/todos/4",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"todos",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update TODO title",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\":\"Web II Vorlesung vorbereiten\"\n}"
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/todos/4",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"todos",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete TODO",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/todos/8",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"todos",
+						"8"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
