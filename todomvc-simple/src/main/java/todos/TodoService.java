@@ -21,7 +21,7 @@ public class TodoService {
     }
 
     public Todo getById(Long id) {
-        return repository.getOne(id);
+        return repository.findById(id).orElse(null);
     }
 
     public List<Todo> findAll() {
