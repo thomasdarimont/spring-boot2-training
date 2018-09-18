@@ -24,10 +24,84 @@
 			"response": []
 		},
 		{
+			"name": "Search TODOs",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"Test\"\n}"
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/todos/search",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"todos",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List TODOs as XML",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{BASE_URL}}/todos",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"todos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Get TODO info",
 			"request": {
 				"method": "GET",
 				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{BASE_URL}}/todos/4",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"todos",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get TODO info as XML",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml"
+					}
+				],
 				"body": {},
 				"url": {
 					"raw": "{{BASE_URL}}/todos/4",
@@ -137,13 +211,13 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{BASE_URL}}/todos/8",
+					"raw": "{{BASE_URL}}/todos/7",
 					"host": [
 						"{{BASE_URL}}"
 					],
 					"path": [
 						"todos",
-						"8"
+						"7"
 					]
 				}
 			},
