@@ -49,7 +49,7 @@ public class TodoController {
     @PostMapping
     public ResponseEntity<?> create(@RequestBody Todo todo, UriComponentsBuilder ucBuilder) {
 
-        Todo saved = this.todos.save(todo);
+        Todo saved = todos.save(todo);
 
         URI newLocation = ucBuilder.path("/todos/{id}").buildAndExpand(saved.getId()).toUri();
         return ResponseEntity.created(newLocation).build();
@@ -57,18 +57,14 @@ public class TodoController {
 
     @GetMapping
     public ResponseEntity<?> list() {
-        return ResponseEntity.ok(this.todos.findAll());
+        return ResponseEntity.ok(todos.findAll());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getById(@PathVariable Long id) {
-
-        Todo found = this.todos.getById(id);
-        if (found == null) {
-            return ResponseEntity.notFound().build();
-        }
-
-        return ResponseEntity.ok(found);
+        return todos.getById(id)
+                .map(ResponseEntity::ok)
+                .orElseGet(ResponseEntity.notFound()::build);
     }
 
     @PutMapping("/{id}")
@@ -94,9 +90,9 @@ public class TodoController {
     }
 
     @PostMapping("/search")
-    public ResponseEntity<?> search(Todo example) {
+    public ResponseEntity<?> search(@RequestBody Todo example) {
 
-        List<?> result = this.todos.findAllByExample(example);
+        List<?> result = todos.findAllByExample(example);
 
         return ResponseEntity.ok(result);
     }
