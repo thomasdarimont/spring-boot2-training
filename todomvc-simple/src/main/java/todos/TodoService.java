@@ -45,24 +45,39 @@ public class TodoService {
     @Transactional
     public Todo update(Long id, Todo newTodo) {
         return getById(id) //
-                .map(savedTodo -> update(savedTodo, newTodo)) //
+                .map(storedTodo -> updateTodo(storedTodo, newTodo)) //
                 .orElse(null);
     }
 
-    private Todo update(Todo savedTodo, Todo newTodo) {
+    @Transactional
+    public Todo patchTodo(Long id, Todo newTodo) {
+        return getById(id) //
+                .map(storedTodo -> patchTodo(storedTodo, newTodo)) //
+                .orElse(null);
+    }
+
+    private Todo updateTodo(Todo storedTodo, Todo newTodo) {
+
+        storedTodo.setCompleted(newTodo.getCompleted());
+        storedTodo.setTitle(newTodo.getTitle());
+
+        return repository.save(storedTodo);
+    }
+
+    private Todo patchTodo(Todo storedTodo, Todo newTodo) {
 
         if (newTodo.getCompleted() != null) {
-            savedTodo.setCompleted(newTodo.getCompleted());
+            storedTodo.setCompleted(newTodo.getCompleted());
         }
 
         if (newTodo.getTitle() != null) {
-            savedTodo.setTitle(newTodo.getTitle());
+            storedTodo.setTitle(newTodo.getTitle());
         }
 
-        return repository.save(savedTodo);
+        return repository.save(storedTodo);
     }
 
-    public List<?> findAllByExample(Todo todo) {
+    List<?> findAllByExample(Todo todo) {
 
         if (todo.getId() != null) {
             return getById(todo.getId())
