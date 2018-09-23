@@ -9,7 +9,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers.startsWith;
+import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers.ignoreCase;
 import static org.springframework.data.domain.ExampleMatcher.matching;
 
 @Service
@@ -86,7 +86,7 @@ public class TodoService {
         }
 
         Example<Todo> example = Example.of(todo, matching()
-                .withMatcher("title", startsWith())
+                .withMatcher("title", ignoreCase().contains())
         );
 
         return repository.findAll(example);
