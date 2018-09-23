@@ -109,4 +109,12 @@ public class TodoController {
 
         return ResponseEntity.ok(result);
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<?> searchWithParams(Todo example) {
+
+        List<?> result = todos.findAllByExample(example);
+
+        return ResponseEntity.ok(result);
+    }
 }
