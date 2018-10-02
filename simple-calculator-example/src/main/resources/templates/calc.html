@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Taschenrechner</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+</head>
+<body>
+
+<div>
+    <h1>Taschenrechner mit GET</h1>
+    <form action="calculate">
+        <!-- <form action="calculate" method="get"> --> <!-- GET is default method -->
+
+        <input name="n1" type="number" required autofocus>
+
+        <button name="op" value="PLUS">+</button>
+        <button name="op" value="MINUS">-</button>
+        <button name="op" value="MULTIPLY">*</button>
+        <button name="op" value="DIVIDE">/</button>
+
+        <input name="n2" type="number" required>
+        <span>=</span>
+        <output name="result" th:text="${resultGet}"></output>
+    </form>
+</div>
+
+<div>
+    <h1>Taschenrechner mit POST</h1>
+    <form action="calculate" method="post">
+
+        <input name="n1" type="number" required autofocus>
+
+        <button name="op" value="PLUS">+</button>
+        <button name="op" value="MINUS">-</button>
+        <button name="op" value="MULTIPLY">*</button>
+        <button name="op" value="DIVIDE">/</button>
+
+        <input name="n2" type="number" required>
+        <span>=</span>
+        <output name="result" th:text="${resultPost}"></output>
+    </form>
+</div>
+</body>
+</html>
