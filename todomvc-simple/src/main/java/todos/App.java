@@ -14,9 +14,9 @@ public class App {
 
     @Autowired
     public void init(TodoService todos) {
-        todos.save(Todo.newTodo("Vorlesung vorbereiten"));
-        todos.save(Todo.newTodo("Vorlesung halten"));
-        todos.save(Todo.newTodo("Feedback sammeln"));
-        todos.save(Todo.newTodo("Vorlesung nachbereiten"));
+        todos.create(Todo.newTodo("Vorlesung vorbereiten"));
+        todos.create(Todo.newTodo("Vorlesung halten"));
+        todos.create(Todo.newTodo("Feedback sammeln"));
+        todos.create(Todo.newTodo("Vorlesung nachbereiten"));
     }
 }

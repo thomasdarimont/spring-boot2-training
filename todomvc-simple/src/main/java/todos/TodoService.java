@@ -20,7 +20,7 @@ public class TodoService {
     private final TodoRepository repository;
 
     @Transactional
-    public Todo save(Todo todo) {
+    public Todo create(Todo todo) {
         return repository.save(todo);
     }
 

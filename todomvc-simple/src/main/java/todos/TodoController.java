@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -48,9 +49,9 @@ public class TodoController {
     private final TodoService todos;
 
     @PostMapping
-    public ResponseEntity<?> create(@RequestBody Todo todo, UriComponentsBuilder ucBuilder) {
+    public ResponseEntity<?> create(@RequestBody @Valid Todo todo, UriComponentsBuilder ucBuilder) {
 
-        Todo saved = todos.save(todo);
+        Todo saved = todos.create(todo);
 
         URI newLocation = ucBuilder.path("/todos/{id}").buildAndExpand(saved.getId()).toUri();
         return ResponseEntity.created(newLocation).build();

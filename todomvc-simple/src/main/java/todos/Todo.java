@@ -6,6 +6,7 @@ import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -21,8 +22,10 @@ public class Todo {
     @GeneratedValue
     Long id;
 
+    @NotNull
     String title;
 
+    @NotNull
     Boolean completed = false;
 
     public static Todo newTodo(String title) {
