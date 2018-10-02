@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{guess_my_number}">Zahlrenraten</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <style>
+        body {
+            font: 16px "Helvetica", "Arial", "sans-serif";
+            text-align: center;
+            margin: 0;
+        }
+
+        ol {
+            list-style-position: inside;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        input[name=guess] {
+            width: 100px;
+        }
+
+        #container {
+            width: 80%  ;
+            border: 5px solid orange;
+            border-radius: 10px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+
+<body th:with="gameRunning = ${game != null}">
+
+<div id="container">
+
+    <header>Quiz</header>
+
+    <section th:if="${gameRunning && game.gameOver}">
+
+        <h1 th:text="#{game_over}">Game Over</h1>
+
+        <h2 th:text="#{needed_to_guess(${game.draw})}">Die gesuchte Zahl war Z</h2>
+
+        <h3>
+            <span th:text="#{you_needed_X_tries(${game.tries})}">Sie haben X Versuche gebraucht</span>
+            <span th:if="${game.perfect}" th:text="#{perfect}">Perfekt!</span>
+        </h3>
+
+        <div>
+            <h4 th:text="#{your_guesses}">Ihre Versuche:</h4>
+            <ol>
+                <li th:each="guess : ${game.guesses}" th:text="${guess}">Versuch</li>
+            </ol>
+        </div>
+    </section>
+
+    <section th:if="${gameRunning && !game.gameOver}">
+        <h2 th:text="#{please_guess_the_number(${game.min}, ${game.max})}">Bitte geben Sie die gesuchte Zahl ein!</h2>
+        <h3 th:if="${game.hint}" th:text="#{hint(#{${game.hint.name().toLowerCase()}})}">Hinweis: Tipp</h3>
+        <form action="game" method="POST">
+            <label for="guess" th:text="#{your_guess}">Ihre Zahl</label>
+            <input id="guess" name="guess" type="number" th:placeholder="#{guess_placeholder}" autofocus required>
+            <button type="submit" th:text="#{guess}">Raten</button>
+        </form>
+    </section>
+
+
+    <section th:if="${!gameRunning || game.gameOver}">
+        <ul>
+            <li>
+                <a href="/game/new" th:text="#{new_game}">Neues Spiel (einfach)</a></li>
+            <li>
+                <a href="/game/new?max=1000" th:text="#{new_game_hard}">Neues Spiel (schwer)</a>
+            </li>
+        </ul>
+    </section>
+</div>
+</body>
+</html>
